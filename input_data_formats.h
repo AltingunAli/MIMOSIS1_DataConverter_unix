@@ -26,12 +26,13 @@
 /*! \brief Structure holding MIMOSIS1 FIRED input data format (for uint32_t).
  *  \details It is built of 2-dimensional array (STL containter) of <b>uint32_t</b> elements.
  *   The size of the array is defined by COLS x ROWS macros. After changing these values program needs to be recompiled.  
- * 	\todo Should be on option for 16b unsigned interger also !
+ * 	 In order to change the type of the structure one has to initialize Integrated_Frame structure in #DataConverter::fill_tree_fired() and recompile
  */
-
+ 
+template<typename T>
 struct Integrated_Frame 
 {
 	//uint32_t int_frame[1024][504];
-	std::array<  std::array<uint32_t, ROWS> , COLS> integrated_frame;
-			
+	//std::array<  std::array<uint32_t, ROWS> , COLS> integrated_frame;
+	std::array<  std::array<T, ROWS> , COLS> integrated_frame;		
 };

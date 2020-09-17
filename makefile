@@ -8,7 +8,7 @@ SOURCES= DataConverter.cpp RunControler.cpp
 
 HEADERS=/input_data_formats.h ./globals.h
 OBJECTS=$(SOURCES:.cc=.o)
-EXECUTABLE=mimosis0reader
+EXECUTABLE=mimosis1reader
 
 all: $(SOURCES) $(EXECUTABLE) 
 

@@ -8,7 +8,7 @@ int main()
 {
 	std::cout << "\n\n >>>>>>> Running data conversion for MIMOSIS1 <<<<<<<< \n\n" << std::endl;
 	
-	DataConverter *reader = new DataConverter();
+	DataConverter*reader = new DataConverter();
 			reader 		->	init();
 			std::cout	<<	*reader;
 			reader		->	open_tree();

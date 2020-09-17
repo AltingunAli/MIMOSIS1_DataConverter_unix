@@ -3,6 +3,7 @@
  */
 
 
+
 #include "DataConverter.h"
 
 //-------------------------------------------------------------------------------------------------
@@ -246,14 +247,14 @@ void DataConverter::fill_tree_dec()
 }
 
 // -------------------------------------------------------------------------------------------------
-
 void DataConverter::fill_tree_fired()
 {
 	MSG(INFO, "Input data format: fired-DAQ format." );
-	
-	Integrated_Frame 	input;
-	long int			current_position {in_file.tellg()};
-	unsigned int		how_many_hits {0};			 
+	std::cout << sizeof(int) << std::endl;
+
+	Integrated_Frame<uint32_t> 	input;
+	long int					current_position {in_file.tellg()};
+	unsigned int				how_many_hits {0};			 
 
 	while( !in_file.eof() ) 
 	{	

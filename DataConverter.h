@@ -18,7 +18,7 @@
  *  \pre       	ROOT installation
  *  \warning   	Exeception handling not added
  */
- 
+
 class DataConverter {
     
 public:
@@ -73,6 +73,7 @@ public:
 	/*! \brief Reads Integrated_Frame from input file and fills output histograms .
 	 *  \details Fills:
 	 *  h2_integrated_frame_matrix, h2_integrated_frame_part, h_fired_pixels_int_frame */
+	
 	void 	fill_tree_fired();
 	
 	//-------------------------
