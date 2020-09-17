@@ -112,6 +112,7 @@ private:
  	TString _out_tree_file_path {""};
 	TString _out_tree_file_name {""};
 	TString _out_tree_name {""};  
+	TString _out_name;
 	
 	//Detector parameters
 	int _nb_of_rows; 	

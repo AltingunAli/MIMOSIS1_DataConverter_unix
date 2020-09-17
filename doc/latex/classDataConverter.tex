@@ -1,0 +1,263 @@
+\hypertarget{classDataConverter}{}\doxysection{Data\+Converter Class Reference}
+\label{classDataConverter}\index{DataConverter@{DataConverter}}
+
+
+opening file/tree, writing to tree and closing the file/tree.  
+
+
+
+
+{\ttfamily \#include $<$Data\+Converter.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDataConverter_a3645c4c6f4ddaf23ee3ede0cac51298f}\label{classDataConverter_a3645c4c6f4ddaf23ee3ede0cac51298f}} 
+\mbox{\hyperlink{classDataConverter_a3645c4c6f4ddaf23ee3ede0cac51298f}{Data\+Converter}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataConverter_aa5bf79f6567d0fa7dedc1741c759af8b}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the class memebers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classDataConverter_a90001f2e094d912234ec6232cbeaa6c6}{get\+\_\+file\+\_\+size}} ()
+\begin{DoxyCompactList}\small\item\em Calculates the file size that was assigned to ifstream in\+\_\+file. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classDataConverter_a6bfd30aa48fae08cb370c0f3df0d70fb}{print\+\_\+hex}} (std\+::string s, bool upper\+\_\+case=true)
+\begin{DoxyCompactList}\small\item\em Takes binary input and saves it in hex. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDataConverter_a28c231cc13b2767f1eccdd1435f6de90}\label{classDataConverter_a28c231cc13b2767f1eccdd1435f6de90}} 
+void \mbox{\hyperlink{classDataConverter_a28c231cc13b2767f1eccdd1435f6de90}{open\+\_\+file}} ()
+\begin{DoxyCompactList}\small\item\em Opens file\+: \+\_\+in\+\_\+file\+\_\+path+\char`\"{}/\char`\"{}+\+\_\+in\+\_\+file\+\_\+name and assigns it to ifstream in\+\_\+file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataConverter_a7b12f678fe276cd946f1b70ed92f51f8}{fill\+\_\+tree}} (int input\+\_\+data\+\_\+format=3)
+\begin{DoxyCompactList}\small\item\em Fill tree accoriding to input data format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataConverter_af5bc838caf76cde006e23e7bf2c9863f}{fill\+\_\+tree\+\_\+raw}} ()
+\begin{DoxyCompactList}\small\item\em Not defined yet. For reading R\+AW D\+AQ data format. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDataConverter_ab2b11aad5a0b61b197a9a8cace07d565}\label{classDataConverter_ab2b11aad5a0b61b197a9a8cace07d565}} 
+void \mbox{\hyperlink{classDataConverter_ab2b11aad5a0b61b197a9a8cace07d565}{fill\+\_\+tree\+\_\+dec}} ()
+\begin{DoxyCompactList}\small\item\em Not defined yet. For reading D\+EC D\+AQ data format. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataConverter_a78849e314e6a5447ea7ae83c9f0f50ca}{fill\+\_\+tree\+\_\+fired}} ()
+\begin{DoxyCompactList}\small\item\em Reads \mbox{\hyperlink{structIntegrated__Frame}{Integrated\+\_\+\+Frame}} from input file and fills output histograms . \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDataConverter_a1b98c23914b02e1c27230c992a71a501}{open\+\_\+tree}} ()
+\begin{DoxyCompactList}\small\item\em Open output tree. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDataConverter_a9f722d0cd4d8fb85b45cd13432f7154c}\label{classDataConverter_a9f722d0cd4d8fb85b45cd13432f7154c}} 
+void \mbox{\hyperlink{classDataConverter_a9f722d0cd4d8fb85b45cd13432f7154c}{close\+\_\+tree}} ()
+\begin{DoxyCompactList}\small\item\em Writes data and closes T\+File. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDataConverter_ae00d1a01cef4e4ff4e7cb62324d94321}\label{classDataConverter_ae00d1a01cef4e4ff4e7cb62324d94321}} 
+\mbox{\hyperlink{classDataConverter_ae00d1a01cef4e4ff4e7cb62324d94321}{$\sim$\+Data\+Converter}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ifstream \mbox{\hyperlink{classDataConverter_a88b85e59536ce3080a06ac159f654f09}{in\+\_\+file}}
+\item 
+long int \mbox{\hyperlink{classDataConverter_a0f4381e97548a48d72ef3116860a3363}{\+\_\+input\+\_\+file\+\_\+size}} \{0\}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classDataConverter_ab0f6b29c41812b4a6d8ce91d8f744aba}{\+\_\+param}} \{\char`\"{}\char`\"{}\}
+\begin{DoxyCompactList}\small\item\em string with the run params full info \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDataConverter_a7c16758715d6b5cd551294f65851b5bc}\label{classDataConverter_a7c16758715d6b5cd551294f65851b5bc}} 
+std\+::string \mbox{\hyperlink{classDataConverter_a7c16758715d6b5cd551294f65851b5bc}{\+\_\+in\+\_\+file\+\_\+path}}
+\begin{DoxyCompactList}\small\item\em Input file path. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDataConverter_aae3c45bf1009f176d7c928883416b5a2}\label{classDataConverter_aae3c45bf1009f176d7c928883416b5a2}} 
+std\+::string \mbox{\hyperlink{classDataConverter_aae3c45bf1009f176d7c928883416b5a2}{\+\_\+in\+\_\+file\+\_\+name}}
+\begin{DoxyCompactList}\small\item\em Input file name. \end{DoxyCompactList}\item 
+T\+H2D $\ast$ \mbox{\hyperlink{classDataConverter_a7d6c7dd4b26e771b173a25af860a04cf}{h2\+\_\+integrated\+\_\+frame\+\_\+matrix}}
+\begin{DoxyCompactList}\small\item\em Integrated hit map of N frames plotted for full matrix. \end{DoxyCompactList}\item 
+T\+H2D $\ast$ \mbox{\hyperlink{classDataConverter_acd1d26cfc92a88223dc938e643a64ead}{h2\+\_\+integrated\+\_\+frame\+\_\+part}}
+\begin{DoxyCompactList}\small\item\em Integrated hit map of N frames plotted for part of the matrix. \end{DoxyCompactList}\item 
+T\+H1D $\ast$ \mbox{\hyperlink{classDataConverter_a58edbcba67abf65adfbce82c0c5c391f}{h\+\_\+fired\+\_\+pixels\+\_\+int\+\_\+frame}}
+\begin{DoxyCompactList}\small\item\em Multiplicity of pixel firing in N frames. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \mbox{\hyperlink{classDataConverter_a704080580bbec51d750a704d9e9879db}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classDataConverter}{Data\+Converter}} \&treereader)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+opening file/tree, writing to tree and closing the file/tree. 
+
+\begin{DoxyAuthor}{Author}
+Roma Bugiel 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+August 2020 
+\end{DoxyDate}
+\begin{DoxyPrecond}{Precondition}
+R\+O\+OT installation 
+\end{DoxyPrecond}
+\begin{DoxyWarning}{Warning}
+Exeception handling not added 
+\end{DoxyWarning}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDataConverter_a7b12f678fe276cd946f1b70ed92f51f8}\label{classDataConverter_a7b12f678fe276cd946f1b70ed92f51f8}} 
+\index{DataConverter@{DataConverter}!fill\_tree@{fill\_tree}}
+\index{fill\_tree@{fill\_tree}!DataConverter@{DataConverter}}
+\doxysubsubsection{\texorpdfstring{fill\_tree()}{fill\_tree()}}
+{\footnotesize\ttfamily void Data\+Converter\+::fill\+\_\+tree (\begin{DoxyParamCaption}\item[{int}]{input\+\_\+data\+\_\+format = {\ttfamily 3} }\end{DoxyParamCaption})}
+
+
+
+Fill tree accoriding to input data format. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em input\+\_\+data\+\_\+format} & 1 = R\+AW, 2 = D\+EC, 3 = F\+I\+R\+ED (default). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDataConverter_a78849e314e6a5447ea7ae83c9f0f50ca}\label{classDataConverter_a78849e314e6a5447ea7ae83c9f0f50ca}} 
+\index{DataConverter@{DataConverter}!fill\_tree\_fired@{fill\_tree\_fired}}
+\index{fill\_tree\_fired@{fill\_tree\_fired}!DataConverter@{DataConverter}}
+\doxysubsubsection{\texorpdfstring{fill\_tree\_fired()}{fill\_tree\_fired()}}
+{\footnotesize\ttfamily void Data\+Converter\+::fill\+\_\+tree\+\_\+fired (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads \mbox{\hyperlink{structIntegrated__Frame}{Integrated\+\_\+\+Frame}} from input file and fills output histograms . 
+
+Fills\+: h2\+\_\+integrated\+\_\+frame\+\_\+matrix, h2\+\_\+integrated\+\_\+frame\+\_\+part, h\+\_\+fired\+\_\+pixels\+\_\+int\+\_\+frame \mbox{\Hypertarget{classDataConverter_af5bc838caf76cde006e23e7bf2c9863f}\label{classDataConverter_af5bc838caf76cde006e23e7bf2c9863f}} 
+\index{DataConverter@{DataConverter}!fill\_tree\_raw@{fill\_tree\_raw}}
+\index{fill\_tree\_raw@{fill\_tree\_raw}!DataConverter@{DataConverter}}
+\doxysubsubsection{\texorpdfstring{fill\_tree\_raw()}{fill\_tree\_raw()}}
+{\footnotesize\ttfamily Data\+Converter\+::fill\+\_\+tree\+\_\+raw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Not defined yet. For reading R\+AW D\+AQ data format. 
+
+~\newline
+ \mbox{\Hypertarget{classDataConverter_a90001f2e094d912234ec6232cbeaa6c6}\label{classDataConverter_a90001f2e094d912234ec6232cbeaa6c6}} 
+\index{DataConverter@{DataConverter}!get\_file\_size@{get\_file\_size}}
+\index{get\_file\_size@{get\_file\_size}!DataConverter@{DataConverter}}
+\doxysubsubsection{\texorpdfstring{get\_file\_size()}{get\_file\_size()}}
+{\footnotesize\ttfamily int Data\+Converter\+::get\+\_\+file\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calculates the file size that was assigned to ifstream in\+\_\+file. 
+
+\begin{DoxyReturn}{Returns}
+Size of the input file in bits. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDataConverter_aa5bf79f6567d0fa7dedc1741c759af8b}\label{classDataConverter_aa5bf79f6567d0fa7dedc1741c759af8b}} 
+\index{DataConverter@{DataConverter}!init@{init}}
+\index{init@{init}!DataConverter@{DataConverter}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void Data\+Converter\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the class memebers. 
+
+Checks if T\+Env object is correctly read in (config\+\_\+file.\+cfg). If not it exits. Otherwise it assigns values from config\+\_\+file.\+cfg to class members. It also initializes \+\_\+param string, used for output file naming. \mbox{\Hypertarget{classDataConverter_a1b98c23914b02e1c27230c992a71a501}\label{classDataConverter_a1b98c23914b02e1c27230c992a71a501}} 
+\index{DataConverter@{DataConverter}!open\_tree@{open\_tree}}
+\index{open\_tree@{open\_tree}!DataConverter@{DataConverter}}
+\doxysubsubsection{\texorpdfstring{open\_tree()}{open\_tree()}}
+{\footnotesize\ttfamily void Data\+Converter\+::open\+\_\+tree (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Open output tree. 
+
+The path and name of the output tree is\+:
+
+\+\_\+out\+\_\+tree\+\_\+file\+\_\+path/\+\_\+out\+\_\+tree\+\_\+file\+\_\+name + \+\_\+ + \+\_\+param + \+\_\+ + \+\_\+out\+\_\+prefix + .root
+
+or when \+\_\+is\+\_\+noise = 1\+:
+
+\+\_\+out\+\_\+tree\+\_\+file\+\_\+path + / + \+\_\+out\+\_\+tree\+\_\+file\+\_\+name + \+\_\+ + N\+O\+I\+SE + \+\_\+out\+\_\+prefix + .root; ~\newline
+ \mbox{\Hypertarget{classDataConverter_a6bfd30aa48fae08cb370c0f3df0d70fb}\label{classDataConverter_a6bfd30aa48fae08cb370c0f3df0d70fb}} 
+\index{DataConverter@{DataConverter}!print\_hex@{print\_hex}}
+\index{print\_hex@{print\_hex}!DataConverter@{DataConverter}}
+\doxysubsubsection{\texorpdfstring{print\_hex()}{print\_hex()}}
+{\footnotesize\ttfamily std\+::string Data\+Converter\+::print\+\_\+hex (\begin{DoxyParamCaption}\item[{std\+::string}]{s,  }\item[{bool}]{upper\+\_\+case = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Takes binary input and saves it in hex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em s} & input string in binary format \\
+\hline
+\mbox{\texttt{ in}}  & {\em upper\+\_\+case} & true to get the output with A, B, C, D, E \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string corresponding to s in hex. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classDataConverter_a704080580bbec51d750a704d9e9879db}\label{classDataConverter_a704080580bbec51d750a704d9e9879db}} 
+\index{DataConverter@{DataConverter}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!DataConverter@{DataConverter}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{classDataConverter}{Data\+Converter}} \&}]{treereader }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Overloading stream insertion operator. Lists all class members and theris current values. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classDataConverter_a0f4381e97548a48d72ef3116860a3363}\label{classDataConverter_a0f4381e97548a48d72ef3116860a3363}} 
+\index{DataConverter@{DataConverter}!\_input\_file\_size@{\_input\_file\_size}}
+\index{\_input\_file\_size@{\_input\_file\_size}!DataConverter@{DataConverter}}
+\doxysubsubsection{\texorpdfstring{\_input\_file\_size}{\_input\_file\_size}}
+{\footnotesize\ttfamily long int Data\+Converter\+::\+\_\+input\+\_\+file\+\_\+size \{0\}}
+
+size of the input file in bits \mbox{\Hypertarget{classDataConverter_ab0f6b29c41812b4a6d8ce91d8f744aba}\label{classDataConverter_ab0f6b29c41812b4a6d8ce91d8f744aba}} 
+\index{DataConverter@{DataConverter}!\_param@{\_param}}
+\index{\_param@{\_param}!DataConverter@{DataConverter}}
+\doxysubsubsection{\texorpdfstring{\_param}{\_param}}
+{\footnotesize\ttfamily std\+::string Data\+Converter\+::\+\_\+param \{\char`\"{}\char`\"{}\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+string with the run params full info 
+
+\+\_\+param = \+\_\+param\+\_\+1+\+\_\+param\+\_\+1\+\_\+value+\+\_\+param\+\_\+2+\+\_\+param\+\_\+2\+\_\+value+\+\_\+param\+\_\+3+\+\_\+param\+\_\+3\+\_\+value
+
+so for example\+: ~\newline
+ V\+B\+B\+\_\+10\+\_\+\+V\+P\+H\+\_\+100\+\_\+\+V\+H\+\_\+10
+
+It is used for output file name and histogram captions \mbox{\Hypertarget{classDataConverter_a7d6c7dd4b26e771b173a25af860a04cf}\label{classDataConverter_a7d6c7dd4b26e771b173a25af860a04cf}} 
+\index{DataConverter@{DataConverter}!h2\_integrated\_frame\_matrix@{h2\_integrated\_frame\_matrix}}
+\index{h2\_integrated\_frame\_matrix@{h2\_integrated\_frame\_matrix}!DataConverter@{DataConverter}}
+\doxysubsubsection{\texorpdfstring{h2\_integrated\_frame\_matrix}{h2\_integrated\_frame\_matrix}}
+{\footnotesize\ttfamily T\+H2D$\ast$ Data\+Converter\+::h2\+\_\+integrated\+\_\+frame\+\_\+matrix\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Integrated hit map of N frames plotted for full matrix. 
+
+The 2-\/dim histogram corresponding to the pixel matrix. Axes are defined for full matrix (0 -\/ (\+\_\+nb\+\_\+of\+\_\+rows-\/1) for Y axis and 0 -\/ (\+\_\+nb\+\_\+of\+\_\+rows-\/1) for X axis). Each pixel value corresponds to how many times pixel fired in N (=\+\_\+nb\+\_\+of\+\_\+frames) frames. N is displayed in the histo caption and S\+H\+O\+U\+LD be defined in the config\+\_\+file.\+cfg \mbox{\Hypertarget{classDataConverter_acd1d26cfc92a88223dc938e643a64ead}\label{classDataConverter_acd1d26cfc92a88223dc938e643a64ead}} 
+\index{DataConverter@{DataConverter}!h2\_integrated\_frame\_part@{h2\_integrated\_frame\_part}}
+\index{h2\_integrated\_frame\_part@{h2\_integrated\_frame\_part}!DataConverter@{DataConverter}}
+\doxysubsubsection{\texorpdfstring{h2\_integrated\_frame\_part}{h2\_integrated\_frame\_part}}
+{\footnotesize\ttfamily T\+H2D$\ast$ Data\+Converter\+::h2\+\_\+integrated\+\_\+frame\+\_\+part\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Integrated hit map of N frames plotted for part of the matrix. 
+
+The 2-\/dim histogram corresponding to the part (or entire) pixel matrix. Axes might be defined for part of the matrix (\+\_\+row\+\_\+start, \+\_\+row\+\_\+end, \+\_\+column\+\_\+start, \+\_\+column\+\_\+end) in config\+\_\+file.\+cfg. Each pixel value corresponds to how many times pixel fired in N (=\+\_\+nb\+\_\+of\+\_\+frames) frames. N is displayed in the histo caption and S\+H\+O\+U\+LD be defined in the config\+\_\+file.\+cfg \mbox{\Hypertarget{classDataConverter_a58edbcba67abf65adfbce82c0c5c391f}\label{classDataConverter_a58edbcba67abf65adfbce82c0c5c391f}} 
+\index{DataConverter@{DataConverter}!h\_fired\_pixels\_int\_frame@{h\_fired\_pixels\_int\_frame}}
+\index{h\_fired\_pixels\_int\_frame@{h\_fired\_pixels\_int\_frame}!DataConverter@{DataConverter}}
+\doxysubsubsection{\texorpdfstring{h\_fired\_pixels\_int\_frame}{h\_fired\_pixels\_int\_frame}}
+{\footnotesize\ttfamily T\+H1D$\ast$ Data\+Converter\+::h\+\_\+fired\+\_\+pixels\+\_\+int\+\_\+frame\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Multiplicity of pixel firing in N frames. 
+
+1-\/dim histogram of integrated hit map (h2\+\_\+integrated\+\_\+frame\+\_\+matrix). Shows how many pixels fired how many times. \mbox{\Hypertarget{classDataConverter_a88b85e59536ce3080a06ac159f654f09}\label{classDataConverter_a88b85e59536ce3080a06ac159f654f09}} 
+\index{DataConverter@{DataConverter}!in\_file@{in\_file}}
+\index{in\_file@{in\_file}!DataConverter@{DataConverter}}
+\doxysubsubsection{\texorpdfstring{in\_file}{in\_file}}
+{\footnotesize\ttfamily std\+::ifstream Data\+Converter\+::in\+\_\+file}
+
+ifstream object holding a binary input file 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{DataConverter_8h}{Data\+Converter.\+h}}\item 
+\mbox{\hyperlink{DataConverter_8cpp}{Data\+Converter.\+cpp}}\end{DoxyCompactItemize}

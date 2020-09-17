@@ -16,6 +16,7 @@ std::ostream &operator<<(std::ostream &os, const DataConverter &dataconverter)
 	os << std::setw(30) << "_out_tree_file_path: " 		<< dataconverter._out_tree_file_path	<< std::endl;
 	os << std::setw(30) << "_out_tree_file_name: " 		<< dataconverter._out_tree_file_name	<< std::endl;
 	os << std::setw(30) << "_out_prefix: " 				<< dataconverter._out_prefix 			<< std::endl;
+	os << std::setw(30) << "_out_name: " 				<< dataconverter._out_name 			<< std::endl;
 	os << std::setw(30) << "_out_tree_name: " 			<< dataconverter._out_tree_name 		<< std::endl;
 	os << std::setw(30) << "_is_noise: " 				<< dataconverter._is_noise 				<< std::endl;
 	os << std::setw(30) << "_param_1: "  				<< dataconverter._param_1 				<< std::endl;
@@ -87,6 +88,24 @@ void DataConverter::init()
 				
 	MSG(CNTR, "The _params are: " + _param);
 
+
+	//Setting the output tree name
+	if(_is_noise)
+	{
+		_out_name = _out_tree_file_path + "/" +
+					_out_tree_file_name + "_" +
+					"NOISE" +
+					_out_prefix +
+					".root";						
+	}
+	else 
+	{ 
+		_out_name = _out_tree_file_path + "/" +
+					_out_tree_file_name + "_" + 
+					_param + "_" + 
+					_out_prefix + 
+					".root";
+	}
 }
 
 // -------------------------------------------------------------------------------------------------
@@ -95,30 +114,11 @@ void DataConverter::open_tree()
 {	
 
 	MSG(DEB, "open_tree() --> starts " );
-	TString out_name {""};
 	const int nb_of_bins_x  {(_column_end-_column_start)+1};
 	const int nb_of_bins_y  {(_row_end-_row_start)+1};
-	
-	if(_is_noise)
-	{
-		out_name = 	_out_tree_file_path + "/" +
-					_out_tree_file_name + "_" +
-					"NOISE" +
-					_out_prefix +
-					".root";						
-	}
-	else 
-	{ 
-		out_name = 	_out_tree_file_path + "/" +
-					_out_tree_file_name + "_" + 
-					_param + "_" + 
-					_out_prefix + 
-					".root";
-	}
-					
 					
 	//Create output file
-	_output_data_file = TFile::Open( out_name,"RECREATE");
+	_output_data_file = TFile::Open( _out_name,"RECREATE");
 	
 	if (!_output_data_file) 
 	{ 	
@@ -127,8 +127,8 @@ void DataConverter::open_tree()
 	}
 	else
 	{ 
-		MSG(INFO, "ROOT tree location: " 	<< out_name);
-		MSG(INFO, "Tree name: " 			<< _out_tree_name )
+		MSG(INFO, "ROOT tree location and name: " 	<< _out_name);
+		MSG(INFO, "Tree name: " 					<< _out_tree_name )
 	
 		// Create a TTree
 		_output_data_file->cd();
