@@ -1,26 +1,75 @@
 #!/bin/bash
 
+iterator=0
 
 for backbias in 0
 do 
-	for pulseHeight in {106..130..1}
+	for pulseHeight in {0..150..10}
 	do
 
-		for vthreshold in 0
+		for vthreshold in 70
 		do
 	
-	rm config_file.txt
-	touch config_file.txt
+	rm 		config_file.cfg
+	touch 	config_file.cfg
 
-	echo "file_path:		./inputData" >> config_file.txt
-	echo "file_name:		row_matrix_VCASN_98_VPULSEHIGH_${pulseHeight}_0.bin_0.bin" >> config_file.txt
-	echo "_tree_file_path:	./outputData" 	>> config_file.txt
-	echo "_tree_file_name:	mimosis0_matrix_raw_VBB_${backbias}_VPH_${pulseHeight}_VTH_${vthreshold}" 	>> config_file.txt
-	echo "_tree_name:		mimosis0_raw_tree" >> config_file.txt
+	echo "_input_data_format:		3" >> config_file.cfg	
+	echo "_output_data_format:		1" >> config_file.cfg
 
+	echo "" >> config_file.cfg
 
-  ./mimosis0reader
+	echo "_nb_of_rows: 				504" 	>> config_file.cfg
+	echo "_nb_of_columns:			1024" 	>> config_file.cfg
+	echo "_nb_of_frames:			1000" 	>> config_file.cfg
+	echo "_row_start:				10" 	>> config_file.cfg
+	echo "_row_end:					10" 	>> config_file.cfg
+	echo "_column_start:			0" 		>> config_file.cfg
+	echo "_column_end:				126" 	>> config_file.cfg
+
+	echo "" >> config_file.cfg
+
+	echo "_is_noise:				0" 		>> config_file.cfg
+	
+	echo "" >> config_file.cfg
+
+	echo "_in_file_path:			./inputData/29_09_2020/data" 	>> config_file.cfg
+
+	echo "" >> config_file.cfg
+
+	echo "_in_file_name:			run_0_${iterator}_cum.bin" 	>> config_file.cfg
+
+	echo "" >> config_file.cfg
+		
+	echo "_out_tree_file_path:		./outputData/29_09_2020" 		>> config_file.cfg
+
+	echo "" >> config_file.cfg
+		
+	echo "_out_tree_file_name:		mimosis1" 						>> config_file.cfg
+	
+	echo "" >> config_file.cfg
+				
+	echo "_out_prefix:				noPLL" 							>> config_file.cfg
+			
+	echo "" >> config_file.cfg
+				
+	echo "_out_tree_name:			mimosis1_raw_tree" 				>> config_file.cfg
+		
+	echo "" >> config_file.cfg	
+			
+	echo "_param_1:					VBB" 							>> config_file.cfg
+	echo "_param_2:					VPH" 							>> config_file.cfg
+	echo "_param_3:					VTH" 							>> config_file.cfg
+
+	echo "" >> config_file.cfg
+
+	echo "_param_1_value:			${backbias}"					>> config_file.cfg
+	echo "_param_2_value:		    ${pulseHeight}"					>> config_file.cfg
+	echo "_param_3_value:			${vthreshold}"					>> config_file.cfg
   
+  ./mimosis1reader
+  
+  iterator=`expr $iterator + 1`
+
 		done
 	done
 done

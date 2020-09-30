@@ -95,16 +95,14 @@ void DataConverter::init()
 		_out_name = _out_tree_file_path + "/" +
 					_out_tree_file_name + "_" +
 					"NOISE" +
-					_out_prefix +
-					".root";						
+					_out_prefix ;						
 	}
 	else 
 	{ 
 		_out_name = _out_tree_file_path + "/" +
 					_out_tree_file_name + "_" + 
 					_param + "_" + 
-					_out_prefix + 
-					".root";
+					_out_prefix ;
 	}
 }
 
@@ -118,7 +116,7 @@ void DataConverter::open_tree()
 	const int nb_of_bins_y  {(_row_end-_row_start)+1};
 					
 	//Create output file
-	_output_data_file = TFile::Open( _out_name,"RECREATE");
+	_output_data_file = TFile::Open( _out_name + ".root","RECREATE");
 	
 	if (!_output_data_file) 
 	{ 	
@@ -127,7 +125,7 @@ void DataConverter::open_tree()
 	}
 	else
 	{ 
-		MSG(INFO, "ROOT tree location and name: " 	<< _out_name);
+		MSG(INFO, "ROOT tree location and name: " 	<< _out_name + ".root");
 		MSG(INFO, "Tree name: " 					<< _out_tree_name )
 	
 		// Create a TTree
@@ -143,11 +141,11 @@ void DataConverter::open_tree()
 	
 		//Add TTree members  
 		h2_integrated_frame_matrix = new TH2D("h2_integrated_frame_matrix", 
-		"Integrated frame (N=" + (TString)std::to_string(_nb_of_frames)+ ") for: " + histo_name + " - entire matrix; row; colum", _nb_of_columns, 0, _nb_of_columns, _nb_of_rows, 0, _nb_of_rows); 
+		"Integrated frame (N=" + (TString)std::to_string(_nb_of_frames)+ ") for: " + histo_name + " - entire matrix; colum; row", _nb_of_columns, 0, _nb_of_columns, _nb_of_rows, 0, _nb_of_rows); 
 		
-		h2_integrated_frame_part = new TH2D("h2_integrated_frame_part", "Integrated frame (N=" + (TString)std::to_string(_nb_of_frames)+ ") for: " + histo_name + "; row; colum", nb_of_bins_x, _column_start, _column_end+1, nb_of_bins_y, _row_start, _row_end+1);
+		h2_integrated_frame_part = new TH2D("h2_integrated_frame_part", "Integrated frame (N=" + (TString)std::to_string(_nb_of_frames)+ ") for: " + histo_name + "; column ; row", nb_of_bins_x, _column_start, _column_end+1, nb_of_bins_y, _row_start, _row_end+1);
 		
-		h_fired_pixels_int_frame = new TH1D("h_fired_pixels_integrated_frame","Multiplicity of hits per pixel integrated from " + (TString)std::to_string(_nb_of_frames), _nb_of_frames, 0, _nb_of_frames);
+		h_fired_pixels_int_frame = new TH1D("h_fired_pixels_integrated_frame","Multiplicity of hits per pixel integrated from " + (TString)std::to_string(_nb_of_frames) + "; nb of hits in N frames stored by single pixel; pixels multiplicity", _nb_of_frames, 0, _nb_of_frames);
 	}
 	
 }
@@ -252,7 +250,7 @@ void DataConverter::fill_tree_fired()
 	MSG(INFO, "Input data format: fired-DAQ format." );
 	std::cout << sizeof(int) << std::endl;
 
-	Integrated_Frame<uint32_t> 	input;
+	Integrated_Frame<uint16_t> 	input;
 	long int					current_position {in_file.tellg()};
 	unsigned int				how_many_hits {0};			 
 
@@ -288,4 +286,24 @@ void DataConverter::fill_tree_fired()
 	
 }
 
+void DataConverter::save_png()
+{	
+	TCanvas *c = new TCanvas();
+	c->cd();
+	h_fired_pixels_int_frame->Draw();
+	c->Print(_out_name+"_h_fired_pixels_int_frame.png");
 
+	gStyle->SetOptStat(0);
+	c->Update();
+	
+	c->Clear();
+	c->cd();
+	h2_integrated_frame_matrix->Draw("COLZ");
+	c->Print(_out_name+"_h2_integrated_frame_matrix.png");
+
+	c->Clear();
+	c->cd();
+	h2_integrated_frame_part->Draw("COLZ");
+	c->Print(_out_name+"_h2_integrated_frame_part.png");
+
+}

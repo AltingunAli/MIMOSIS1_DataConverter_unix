@@ -36,7 +36,9 @@
 #include <TEnv.h>
 #include <TH2D.h>
 #include <TH1D.h>
-
+#include "TCanvas.h"
+#include "TDirectory.h"
+#include <TStyle.h>
 
  /**
  * \var VERBOSITY_LEVEL

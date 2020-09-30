@@ -10,7 +10,6 @@
 #include "cout_msg.h"
 #include "globals.h"
 
-
 /*! \class 		DataConverter
  *  \brief 		opening file/tree, writing to tree and closing the file/tree.
  *  \author    	Roma Bugiel
@@ -92,6 +91,10 @@ public:
     /*! \brief Writes data and closes TFile. */
     void 	close_tree();
 
+    //-------------------------
+    /*! \brief Saves the histograms as images */
+	void 	save_png();
+
 	//Input files
 	std::ifstream 	in_file; /*!< ifstream object holding a binary input file */
 	long int 		_input_file_size {0}; 	/*!< size of the input file in bits */
@@ -170,11 +173,10 @@ private:
 	 *  Each pixel value corresponds to how many times pixel fired in N (=_nb_of_frames) frames. 
 	 *  N is displayed in the histo caption and SHOULD be defined in the config_file.cfg */
 	TH2D *h2_integrated_frame_part;
-	
+
 	/*! \brief Multiplicity of pixel firing in N frames. 
 	 *  \details 1-dim histogram  of integrated hit map (h2_integrated_frame_matrix). Shows how many pixels fired how many times. */
 	TH1D *h_fired_pixels_int_frame;
-	
 	
 
 } ; 

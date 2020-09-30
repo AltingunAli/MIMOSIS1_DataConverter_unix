@@ -14,6 +14,8 @@ int main()
 			reader		->	open_tree();
 			reader		->	open_file();
 			reader		->	fill_tree(3);
+			reader		->	save_png();			
 			reader		->	close_tree();
+
 	return 0;
 }
