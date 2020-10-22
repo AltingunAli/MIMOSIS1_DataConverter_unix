@@ -11,12 +11,13 @@
 std::ostream &operator<<(std::ostream &os, const DataConverter &dataconverter) 
 {
 	os << std::setw(30) << " Data Converter is run with: " 	<< std::endl;
+	os << std::setw(30) << "_run: " 					<< dataconverter._run					<< std::endl;
 	os << std::setw(30) << "_in_file_path: " 			<< dataconverter._in_file_path			<< std::endl;
 	os << std::setw(30) << "_in_file_name: " 			<< dataconverter._in_file_name			<< std::endl;
 	os << std::setw(30) << "_out_tree_file_path: " 		<< dataconverter._out_tree_file_path	<< std::endl;
 	os << std::setw(30) << "_out_tree_file_name: " 		<< dataconverter._out_tree_file_name	<< std::endl;
 	os << std::setw(30) << "_out_prefix: " 				<< dataconverter._out_prefix 			<< std::endl;
-	os << std::setw(30) << "_out_name: " 				<< dataconverter._out_name 			<< std::endl;
+	os << std::setw(30) << "_out_name: " 				<< dataconverter._out_name 				<< std::endl;
 	os << std::setw(30) << "_out_tree_name: " 			<< dataconverter._out_tree_name 		<< std::endl;
 	os << std::setw(30) << "_is_noise: " 				<< dataconverter._is_noise 				<< std::endl;
 	os << std::setw(30) << "_param_1: "  				<< dataconverter._param_1 				<< std::endl;
@@ -51,7 +52,8 @@ void DataConverter::init()
 			exit(0);
 	}
 	
-	
+	_run				=	config.GetValue("_run",999999);
+		
 	_in_file_path		=	config.GetValue("_in_file_path","");
 	_in_file_name		=	config.GetValue("_in_file_name","");
 	_out_tree_file_path	= 	config.GetValue("_out_tree_file_path","");
@@ -94,6 +96,7 @@ void DataConverter::init()
 	{
 		_out_name = _out_tree_file_path + "/" +
 					_out_tree_file_name + "_" +
+					"_run" + std::to_string(_run) + "_" +
 					"NOISE" +
 					_out_prefix ;						
 	}
@@ -101,7 +104,8 @@ void DataConverter::init()
 	{ 
 		_out_name = _out_tree_file_path + "/" +
 					_out_tree_file_name + "_" + 
-					_param + "_" + 
+					"run" + std::to_string(_run) + "_" +
+					_param + 
 					_out_prefix ;
 	}
 }
@@ -145,7 +149,10 @@ void DataConverter::open_tree()
 		
 		h2_integrated_frame_part = new TH2D("h2_integrated_frame_part", "Integrated frame (N=" + (TString)std::to_string(_nb_of_frames)+ ") for: " + histo_name + "; column ; row", nb_of_bins_x, _column_start, _column_end+1, nb_of_bins_y, _row_start, _row_end+1);
 		
-		h_fired_pixels_int_frame = new TH1D("h_fired_pixels_integrated_frame","Multiplicity of hits per pixel integrated from " + (TString)std::to_string(_nb_of_frames) + "; nb of hits in N frames stored by single pixel; pixels multiplicity", _nb_of_frames, 0, _nb_of_frames);
+		h2_pixels_fired_over_nbframes = new TH2D("h2_pixels_fired_over_nbframes", "Pixels fired over number of frames (N=" + (TString)std::to_string(_nb_of_frames)+ ") for: " + histo_name + "; column ; row", nb_of_bins_x, _column_start, _column_end+1, nb_of_bins_y, _row_start, _row_end+1);
+
+		h_fired_pixels_int_frame = new TH1D("h_fired_pixels_integrated_frame","Multiplicity of hits per pixel integrated from " + (TString)std::to_string(_nb_of_frames) + "; nb of hits in N frames stored by single pixel; pixels multiplicity", 1.1*_nb_of_frames+1, 0, 1.1*_nb_of_frames);
+
 	}
 	
 }
@@ -273,7 +280,15 @@ void DataConverter::fill_tree_fired()
 		for(long unsigned int row_it = 0; row_it < (&input.integrated_frame[0])->size() ; row_it++) 
 		{
 			how_many_hits = input.integrated_frame[col_it][row_it];
-			if(how_many_hits==0) continue;
+			if(static_cast<int>(how_many_hits) > _nb_of_frames) 
+			{
+				MSG(WARN, "\t\t For pixel: [" << col_it << ", " << row_it << "] nb of hits largen than nb of frames: " << how_many_hits );
+				h2_pixels_fired_over_nbframes -> Fill(col_it, row_it, how_many_hits);	
+			}
+			if(how_many_hits==0) 
+			{
+				continue;
+			}
 			
 			MSG(DEB, "\t\tFired pixel: " + std::to_string(col_it) + " " + std::to_string(row_it) + " --> " + std::to_string(how_many_hits) );
 
@@ -290,8 +305,9 @@ void DataConverter::save_png()
 {	
 	TCanvas *c = new TCanvas();
 	c->cd();
+	c->SetLogy();
 	h_fired_pixels_int_frame->Draw();
-	c->Print(_out_name+"_h_fired_pixels_int_frame.png");
+	c->Print(_out_name+"_h_fired_pixels_int_frame.pdf");
 
 	gStyle->SetOptStat(0);
 	c->Update();
@@ -299,11 +315,16 @@ void DataConverter::save_png()
 	c->Clear();
 	c->cd();
 	h2_integrated_frame_matrix->Draw("COLZ");
-	c->Print(_out_name+"_h2_integrated_frame_matrix.png");
+	c->Print(_out_name+"_h2_integrated_frame_matrix.pdf");
 
 	c->Clear();
 	c->cd();
 	h2_integrated_frame_part->Draw("COLZ");
-	c->Print(_out_name+"_h2_integrated_frame_part.png");
+	c->Print(_out_name+"_h2_integrated_frame_part.pdf");
+	
+	c->Clear();
+	c->cd();
+	h2_pixels_fired_over_nbframes->Draw("COLZ");
+	c->Print(_out_name+"_h2_pixels_fired_over_nbframes.pdf");
 
 }

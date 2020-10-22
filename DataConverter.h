@@ -106,6 +106,9 @@ private:
 	
 	#ifndef DOXYGEN_SHOULD_SKIP_THIS
 
+	//Run number
+	int _run;
+
 	//Analysis flags
 	int _is_noise;
 	int	_is_uint16_t;
@@ -178,7 +181,9 @@ private:
 	 *  \details 1-dim histogram  of integrated hit map (h2_integrated_frame_matrix). Shows how many pixels fired how many times. */
 	TH1D *h_fired_pixels_int_frame;
 	
-
+	/*! \brief Pixels that fired more than number of frames
+	 *  \details 2-dim histogram this is a debug histogram, since it should not happen to have more entries in pixel integrated hit map than number of frames. */
+	TH2D *h2_pixels_fired_over_nbframes;
 } ; 
 
 #endif
