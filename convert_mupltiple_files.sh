@@ -74,7 +74,7 @@ do
 	  
 			./mimosis1reader
 	  
-			mv ./outputData/26_10_2020/*.pdf ./outputData/26_10_2020/png
+			#mv ./outputData/26_10_2020/*.pdf ./outputData/26_10_2020/png
 			
 			iterator=`expr $iterator + 1`
 

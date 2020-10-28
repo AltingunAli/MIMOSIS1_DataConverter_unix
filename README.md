@@ -45,9 +45,13 @@ For configuration parameters list on HTLM documentation please go: Releated Page
 
 ## Scirpits
 
-__NOT FINISHED__
-
 The bash script __convert_multiple_files.sh__ is provided for running data conversion of serveral files. 
-The bash script is generating only config_file.cfg which is loaded in runtime, so after changing configuration file no complitation is needed. 
+The bash script is generating only config_file.cfg which is loaded in runtime, so after changes in configuration file do not need complitation.
 
-There are three analysis parameters for which script is able to run automatic conversion (simply execute program for multiple files). These analysis parameters are: VPULSE, VTHRESHOLD and VBACKBIAS. One can also use script for running only one file. In such a case only one number (without {}) should be placed in for-loops inside bashscript. 
+There are four analysis parameters for which script is able to call automatic conversion (simply execute program for multiple files for which the value of parameter is changed). These analysis parameters are: run, VPULSE, VTHRESHOLD and VBACKBIAS. One can also use script for running only one file. In such a case only one number (without {}) should be placed in for-loops inside bashscript. 
+
+## Essentail steps for running the software
+* after cloning the repository --> __make__
+* check if outputData directory is created in software dir. 
+* edit __convert_multiple_files.sh__
+** most of the parameters might stay unchanged. One should edit (check): ranges of for-loops, _run, _row_start, _row_end, _column_start, _column_end, _in_file_path, _out_tree_file_path. Definitions in doc. 
