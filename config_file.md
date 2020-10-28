@@ -10,8 +10,9 @@ The convention is that the names of variables in .cfg are the same as used in cl
 
 | Name                | Value (example)        | Info                                   | Description                                                                                       |
 |---------------------|------------------------|----------------------------------------|---------------------------------------------------------------------------------------------------|
+| _run  			  | 10                     | __int__, arbitrary, > 0                | Run number used in reading the input file and also in output files naming                         |
 | _input_data_format  | 3                      | __int__, options: 1, 2                 | Input file data format (1 - RAW, 2 - DEC, 3 - FIRED).                                             |
-| _is_uint16_t		  | 0                      | __int__, options: 1	                | NOT DONE; When FIRED format is provided as uint16_t instead of default uint16_t                             |
+| _is_uint16_t		  | 0                      | __int__, options: 1	                | NOT DONE; When FIRED format is provided as uint16_t instead of default uint16_t                   |
 | _output_data_format | 1                      | __int__                                | IGNORE; prepared for outputs for TAF and ROOT separetly.                                          |
 | _nb_of_rows         | 504                    | __int__, arbitrary, > 0                | Number of rows in matrix for global histogram.                                                    |
 | _nb_of_columns      | 1024                   | __int__, arbitrary, > 0                | Number of columns in matrix for global histogram.                                                 |

@@ -149,9 +149,9 @@ void DataConverter::open_tree()
 		
 		h2_integrated_frame_part = new TH2D("h2_integrated_frame_part", "Integrated frame (N=" + (TString)std::to_string(_nb_of_frames)+ ") for: " + histo_name + "; column ; row", nb_of_bins_x, _column_start, _column_end+1, nb_of_bins_y, _row_start, _row_end+1);
 		
-		h2_pixels_fired_over_nbframes = new TH2D("h2_pixels_fired_over_nbframes", "Pixels fired over number of frames (N=" + (TString)std::to_string(_nb_of_frames)+ ") for: " + histo_name + "; column ; row", nb_of_bins_x, _column_start, _column_end+1, nb_of_bins_y, _row_start, _row_end+1);
+		h2_pixels_fired_over_nbframes = new TH2D("h2_pixels_fired_over_nbframes", "Pixels fired over number of frames (N=" + (TString)std::to_string(_nb_of_frames)+ ") for: " + histo_name + "; column ; row", _nb_of_columns, 0, _nb_of_columns, _nb_of_rows, 0, _nb_of_rows);
 
-		h_fired_pixels_int_frame = new TH1D("h_fired_pixels_integrated_frame","Multiplicity of hits per pixel integrated from " + (TString)std::to_string(_nb_of_frames) + "; nb of hits in N frames stored by single pixel; pixels multiplicity", 1.1*_nb_of_frames+1, 0, 1.1*_nb_of_frames);
+		h_fired_pixels_int_frame = new TH1D("h_fired_pixels_integrated_frame","Multiplicity of hits per pixel integrated from " + (TString)std::to_string(_nb_of_frames) + "; nb of hits in N frames stored by single pixel; pixels multiplicity", 2*_nb_of_frames+1, 0, 2*_nb_of_frames);
 
 	}
 	
@@ -304,11 +304,6 @@ void DataConverter::fill_tree_fired()
 void DataConverter::save_png()
 {	
 	TCanvas *c = new TCanvas();
-	c->cd();
-	c->SetLogy();
-	h_fired_pixels_int_frame->Draw();
-	c->Print(_out_name+"_h_fired_pixels_int_frame.pdf");
-
 	gStyle->SetOptStat(0);
 	c->Update();
 	
@@ -324,7 +319,16 @@ void DataConverter::save_png()
 	
 	c->Clear();
 	c->cd();
+	h2_pixels_fired_over_nbframes->SetMinimum(_nb_of_frames);
+	//h2_pixels_fired_over_nbframes->SetFillColor(1);
+	h2_pixels_fired_over_nbframes->GetXaxis()->SetRangeUser(0, 128);
+	gStyle->SetPalette(kDarkRainBow);
 	h2_pixels_fired_over_nbframes->Draw("COLZ");
 	c->Print(_out_name+"_h2_pixels_fired_over_nbframes.pdf");
+	
+	c->cd();
+	c->SetLogy();
+	h_fired_pixels_int_frame->Draw();
+	c->Print(_out_name+"_h_fired_pixels_int_frame.pdf");
 
 }

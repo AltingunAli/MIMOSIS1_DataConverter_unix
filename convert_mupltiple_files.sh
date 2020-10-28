@@ -2,7 +2,7 @@
 
 iterator=0
 
-for run in 13
+for run in {17..19..1}
 do
 	iterator=0
 
@@ -26,9 +26,9 @@ do
 		
 			echo "_nb_of_rows: 				504" 	>> config_file.cfg
 			echo "_nb_of_columns:			1024" 	>> config_file.cfg
-			echo "_nb_of_frames:			520" 	>> config_file.cfg
+			echo "_nb_of_frames:			500" 	>> config_file.cfg
 			echo "_row_start:				0" 	>> config_file.cfg
-			echo "_row_end:					98" 	>> config_file.cfg
+			echo "_row_end:					503" 	>> config_file.cfg
 			echo "_column_start:			0" 		>> config_file.cfg
 			echo "_column_end:				127" 	>> config_file.cfg
 		
@@ -46,7 +46,7 @@ do
 		
 			echo "" >> config_file.cfg
 				
-			echo "_out_tree_file_path:		./outputData/20_10_2020" 		>> config_file.cfg
+			echo "_out_tree_file_path:		./outputData/26_10_2020" 		>> config_file.cfg
 		
 			echo "" >> config_file.cfg
 			
@@ -74,7 +74,7 @@ do
 	  
 			./mimosis1reader
 	  
-			mv ./outputData/20_10_2020/*.pdf ./outputData/20_10_2020/png
+			mv ./outputData/26_10_2020/*.pdf ./outputData/26_10_2020/png
 			
 			iterator=`expr $iterator + 1`
 
