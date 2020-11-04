@@ -328,6 +328,7 @@ void DataConverter::save_png()
 	
 	c->cd();
 	c->SetLogy();
+	h_fired_pixels_int_frame->GetXaxis()->SetRangeUser(400, 2*_nb_of_frames);
 	h_fired_pixels_int_frame->Draw();
 	c->Print(_out_name+"_h_fired_pixels_int_frame.pdf");
 

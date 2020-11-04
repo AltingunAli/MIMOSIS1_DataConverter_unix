@@ -79,12 +79,15 @@ public:
 	/*! \brief Open output tree
 	 *  \details The path and name of the output tree is: 
 	 * 
-	 * _out_tree_file_path/_out_tree_file_name + _ + _param + _ + _out_prefix + .root
+	 * _out_tree_file_path/_out_tree_file_name + "_run" + _run + #_param + _ + _out_prefix + .root
 	 * 
-	 * or when _is_noise = 1:
+	 * or when #_is_noise = 1:
 	 * 
-	 * _out_tree_file_path + / + _out_tree_file_name + _ + NOISE + _out_prefix + .root;	
+	 * _out_tree_file_path + / + _out_tree_file_name + "_run" + _run + "_NOISE" + _out_prefix + .root;	
+	 *
+	 * and the variables are defined via config_file. 
 	 */
+ 
     void 	open_tree();
     
     //-------------------------

@@ -2,13 +2,13 @@
 
 iterator=0
 
-for run in {17..19..1}
+for run in {18..18..1}
 do
 	iterator=0
 
 	for backbias in 0
 	do 
-		for pulseHeight in {0..245..5}
+		for pulseHeight in {0..220..5}
 		do
 
 			for vthreshold in 67
@@ -27,7 +27,7 @@ do
 			echo "_nb_of_rows: 				504" 	>> config_file.cfg
 			echo "_nb_of_columns:			1024" 	>> config_file.cfg
 			echo "_nb_of_frames:			500" 	>> config_file.cfg
-			echo "_row_start:				0" 	>> config_file.cfg
+			echo "_row_start:				0"		>> config_file.cfg
 			echo "_row_end:					503" 	>> config_file.cfg
 			echo "_column_start:			0" 		>> config_file.cfg
 			echo "_column_end:				127" 	>> config_file.cfg
@@ -46,7 +46,7 @@ do
 		
 			echo "" >> config_file.cfg
 				
-			echo "_out_tree_file_path:		./outputData/26_10_2020" 		>> config_file.cfg
+			echo "_out_tree_file_path:		./outputData/run_18" 		>> config_file.cfg
 		
 			echo "" >> config_file.cfg
 			
@@ -63,7 +63,7 @@ do
 			echo "" >> config_file.cfg	
 					
 			echo "_param_1:					VBB" 							>> config_file.cfg
-			echo "_param_2:					VPH" 							>> config_file.cfg
+			echo "_param_2:					VPH_fine" 						>> config_file.cfg
 			echo "_param_3:					VTH" 							>> config_file.cfg
 
 			echo "" >> config_file.cfg

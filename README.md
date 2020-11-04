@@ -3,9 +3,9 @@
 ## General desciption 
 __MIMOSIS1_DataConverter__
 
-The software is dedicated for converting the data file .bin from MIMOSIS1 DAQ to ROOT Tree format (.root). Using ROOT TTree the data might be loaded into __MIMOSIS1_Lab_Analyser__ to plot S-Curves and performe basic noise analysis. 
+The software is dedicated for converting the data file .bin from MIMOSIS1 DAQ to ROOT Tree format (.root). Using ROOT TTree the data might be loaded into __MIMOSIS1_PhysicsAnalysis__ to plot S-Curves and performe basic noise analysis. 
 
-For that moment (07.09.2020) the software is working with __FIRED DAQ__ data type, so the data format containing 2-DIM array with multiplicity of fired pixels per N frames. This format is futher called __integrated frame__ .
+For that moment the software is working with __FIRED DAQ__ data type, so the data format containing 2-DIM array with multiplicity of fired pixels per N frames. This format is futher called __integrated frame__ .
 
 ## GitHub
 Repository can be cloned from:
@@ -19,7 +19,7 @@ __https://github.com/RomaBugiel/MIMOSIS1_DataConverter_unix.git__
 The software was tested on:
 
 * ROOT 6.22/00 
-* Unix: Ubuntu 20 (there is also Windows version but without documentation. This one can be used since the naming and functionality is the same)
+* Unix: Ubuntu 20
 * Doxygen: 1.8.17
 * g++: 9.3.0 
 
@@ -53,5 +53,14 @@ There are four analysis parameters for which script is able to call automatic co
 ## Essentail steps for running the software
 * after cloning the repository --> __make__
 * check if outputData directory is created in software dir. 
-* edit __convert_multiple_files.sh__
-** most of the parameters might stay unchanged. One should edit (check): ranges of for-loops, _run, _row_start, _row_end, _column_start, _column_end, _in_file_path, _out_tree_file_path. Definitions in doc. 
+* edit __convert_multiple_files.sh__ . Most of the parameters might stay unchanged. One should edit (check): 
+	* ranges of for-loops
+	* _run
+	* _row_start
+	* _row_end
+	* _column_start
+	* _column_end
+	* _in_file_path 
+	* _out_tree_file_path 
+	
+Definitions in doc. 
