@@ -2,36 +2,36 @@
 
 iterator=0
 
-for run in {18..18..1}
+for run in {14167..14167..1}
 do
 	iterator=0
 
-	for backbias in 0
+	for backbias in 1
 	do 
-		for pulseHeight in {0..220..5}
+		for pulseHeight in {0..145..5}
 		do
 
-			for vthreshold in 67
-			do
+			for vthreshold in 104
+			do 
 			
-			rm 		config_file.cfg
+			rm 	config_file.cfg
 			touch 	config_file.cfg
 		
-			echo "_run:		${run}" >> config_file.cfg
+			echo "_run:		${run}" 		>> config_file.cfg
 		
 			echo "_input_data_format:		3" >> config_file.cfg	
 			echo "_output_data_format:		1" >> config_file.cfg
 		
 			echo "" >> config_file.cfg
 		
-			echo "_nb_of_rows: 				504" 	>> config_file.cfg
-			echo "_nb_of_columns:			1024" 	>> config_file.cfg
-			echo "_nb_of_frames:			500" 	>> config_file.cfg
-			echo "_row_start:				0"		>> config_file.cfg
-			echo "_row_end:					503" 	>> config_file.cfg
-			echo "_column_start:			0" 		>> config_file.cfg
-			echo "_column_end:				127" 	>> config_file.cfg
-		
+			echo "_nb_of_rows: 			504" 	>> config_file.cfg
+			echo "_nb_of_columns:		1024" 	>> config_file.cfg
+			echo "_nb_of_frames:		500" 	>> config_file.cfg
+			echo "_row_start:			0"	>> config_file.cfg
+			echo "_row_end:				503" 	>> config_file.cfg
+			echo "_column_start:		896" 	>> config_file.cfg
+			echo "_column_end:			1023" 	>> config_file.cfg
+
 			echo "" >> config_file.cfg
 		
 			echo "_is_noise:				0" 		>> config_file.cfg
@@ -46,7 +46,7 @@ do
 		
 			echo "" >> config_file.cfg
 				
-			echo "_out_tree_file_path:		./outputData/run_18" 		>> config_file.cfg
+			echo "_out_tree_file_path:		./outputData/run_${run}" 		>> config_file.cfg
 		
 			echo "" >> config_file.cfg
 			
@@ -54,7 +54,7 @@ do
 			
 			echo "" >> config_file.cfg
 						
-			echo "_out_prefix:				_noPLL" 							>> config_file.cfg
+			echo "_out_prefix:				_noPLL" 						>> config_file.cfg
 					
 			echo "" >> config_file.cfg
 						

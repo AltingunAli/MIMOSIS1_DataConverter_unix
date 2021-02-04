@@ -151,7 +151,10 @@ void DataConverter::open_tree()
 		
 		h2_pixels_fired_over_nbframes = new TH2D("h2_pixels_fired_over_nbframes", "Pixels fired over number of frames (N=" + (TString)std::to_string(_nb_of_frames)+ ") for: " + histo_name + "; column ; row", _nb_of_columns, 0, _nb_of_columns, _nb_of_rows, 0, _nb_of_rows);
 
-		h_fired_pixels_int_frame = new TH1D("h_fired_pixels_integrated_frame","Multiplicity of hits per pixel integrated from " + (TString)std::to_string(_nb_of_frames) + "; nb of hits in N frames stored by single pixel; pixels multiplicity", 2*_nb_of_frames+1, 0, 2*_nb_of_frames);
+		h_hitrate = new TH1D("h_hitrate","Hit rate -- integrated over " + (TString)std::to_string(_nb_of_frames) + " frames;hit rate; #", 2*_nb_of_frames+1, 0, 2*_nb_of_frames);
+		  
+		h_hitrate_matA = new TH1D("h_hitrate_matA","Hit rate -- integrated over " + (TString)std::to_string(_nb_of_frames) + " frames;hit rate; #", 2*_nb_of_frames+1, 0, 2*_nb_of_frames);
+		h_hitrate_matB = new TH1D("h_hitrate_matB","Hit rate -- integrated over " + (TString)std::to_string(_nb_of_frames) + " frames;hit rate; #", 2*_nb_of_frames+1, 0, 2*_nb_of_frames);
 
 	}
 	
@@ -275,16 +278,34 @@ void DataConverter::fill_tree_fired()
 
 	MSG(CNTR, "Input array is: " + std::to_string(input.integrated_frame.size()) + " per " + std::to_string((&input.integrated_frame[0])->size()) );
 	
+	std::ofstream myfile;
+	myfile.open ("to_mask_.txt", std::ofstream::app);
+
 	for(long unsigned int col_it = 0; col_it < input.integrated_frame.size() ; col_it++) 
 	{	
 		for(long unsigned int row_it = 0; row_it < (&input.integrated_frame[0])->size() ; row_it++) 
 		{
 			how_many_hits = input.integrated_frame[col_it][row_it];
+
 			if(static_cast<int>(how_many_hits) > _nb_of_frames) 
 			{
 				MSG(WARN, "\t\t For pixel: [" << col_it << ", " << row_it << "] nb of hits largen than nb of frames: " << how_many_hits );
 				h2_pixels_fired_over_nbframes -> Fill(col_it, row_it, how_many_hits);	
 			}
+			
+			if( static_cast<int>(how_many_hits)  > 1.05*_nb_of_frames) 
+			{
+				myfile << col_it << "\t" << row_it << std::endl;
+			}
+			
+			if((_param_2_value == 0) && (static_cast<int>(how_many_hits)  > 10))
+			{
+				myfile << col_it << "\t" << row_it << std::endl;
+				//std::cout << "Non zero at first file " <<   col_it << "\t" << row_it << std::endl;
+			}
+			
+			
+			
 			if(how_many_hits==0) 
 			{
 				continue;
@@ -294,11 +315,16 @@ void DataConverter::fill_tree_fired()
 
 			h2_integrated_frame_matrix 	-> Fill(col_it, row_it, how_many_hits);	
 			h2_integrated_frame_part 	-> Fill(col_it, row_it, how_many_hits);
-			h_fired_pixels_int_frame	-> Fill(how_many_hits);
+				
+			h_hitrate	-> Fill(how_many_hits);
+			if((col_it <= 127)) {h_hitrate_matA-> Fill(how_many_hits) ;}
+			if((col_it >= 128 ) && (col_it <= 511)) {h_hitrate_matB-> Fill(how_many_hits) ;}
 
 		}
 	}
 	
+	myfile.close();
+
 }
 
 void DataConverter::save_png()
@@ -310,26 +336,30 @@ void DataConverter::save_png()
 	c->Clear();
 	c->cd();
 	h2_integrated_frame_matrix->Draw("COLZ");
+	h2_integrated_frame_matrix->SetMaximum(_nb_of_frames);
 	c->Print(_out_name+"_h2_integrated_frame_matrix.pdf");
 
 	c->Clear();
 	c->cd();
 	h2_integrated_frame_part->Draw("COLZ");
+	h2_integrated_frame_part->SetMaximum(_nb_of_frames);
 	c->Print(_out_name+"_h2_integrated_frame_part.pdf");
 	
-	c->Clear();
 	c->cd();
+	c->SetLogy();
+	//h_fired_pixels_int_frame->GetXaxis()->SetRangeUser(400, 2*_nb_of_frames);
+	h_hitrate->Draw();
+	c->Print(_out_name+"_h_hitrate.pdf");
+	
+	c->Clear();
+	c->cd();  gPad->SetFrameFillColor(kBlack);
 	h2_pixels_fired_over_nbframes->SetMinimum(_nb_of_frames);
 	//h2_pixels_fired_over_nbframes->SetFillColor(1);
-	h2_pixels_fired_over_nbframes->GetXaxis()->SetRangeUser(0, 128);
+	//h2_pixels_fired_over_nbframes->GetXaxis()->SetRangeUser(0, 128);
 	gStyle->SetPalette(kDarkRainBow);
 	h2_pixels_fired_over_nbframes->Draw("COLZ");
 	c->Print(_out_name+"_h2_pixels_fired_over_nbframes.pdf");
 	
-	c->cd();
-	c->SetLogy();
-	h_fired_pixels_int_frame->GetXaxis()->SetRangeUser(400, 2*_nb_of_frames);
-	h_fired_pixels_int_frame->Draw();
-	c->Print(_out_name+"_h_fired_pixels_int_frame.pdf");
+	
 
 }

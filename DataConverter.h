@@ -9,6 +9,7 @@
 #include "input_data_formats.h"
 #include "cout_msg.h"
 #include "globals.h"
+#include <fstream>
 
 /*! \class 		DataConverter
  *  \brief 		opening file/tree, writing to tree and closing the file/tree.
@@ -180,9 +181,11 @@ private:
 	 *  N is displayed in the histo caption and SHOULD be defined in the config_file.cfg */
 	TH2D *h2_integrated_frame_part;
 
-	/*! \brief Multiplicity of pixel firing in N frames. 
+	/*! \brief Hit rate. 
 	 *  \details 1-dim histogram  of integrated hit map (h2_integrated_frame_matrix). Shows how many pixels fired how many times. */
-	TH1D *h_fired_pixels_int_frame;
+	TH1D *h_hitrate;
+	TH1D *h_hitrate_matA;
+	TH1D *h_hitrate_matB;
 	
 	/*! \brief Pixels that fired more than number of frames
 	 *  \details 2-dim histogram this is a debug histogram, since it should not happen to have more entries in pixel integrated hit map than number of frames. */
