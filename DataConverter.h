@@ -110,6 +110,9 @@ private:
 	
 	#ifndef DOXYGEN_SHOULD_SKIP_THIS
 
+	//Chip number
+	int _chipNo;	
+
 	//Run number
 	int _run;
 

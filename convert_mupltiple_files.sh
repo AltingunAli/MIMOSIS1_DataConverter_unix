@@ -1,24 +1,28 @@
 #!/bin/bash
 
-iterator=0
-
-for run in {14167..14167..1}
-do
 	iterator=0
+	i=0;
 
-	for backbias in 1
+	for backbias in 2000
 	do 
-		for pulseHeight in {0..145..5}
-		do
-
-			for vthreshold in 104
-			do 
+		for vthreshold in {120..130..10}
+		do 
+			run=26035
+			run=`expr $i + $run`
+			
+			for pulseHeight in {0..195..5}
+			do		
+			
+			echo "run: ${run}"
+			
+			mkdir -p ./outputData/run_${run}
 			
 			rm 	config_file.cfg
 			touch 	config_file.cfg
 		
-			echo "_run:		${run}" 		>> config_file.cfg
-		
+			echo "_run:			${run}" 		>> config_file.cfg
+			echo "_chipNo:		23" 		>> config_file.cfg
+
 			echo "_input_data_format:		3" >> config_file.cfg	
 			echo "_output_data_format:		1" >> config_file.cfg
 		
@@ -29,8 +33,8 @@ do
 			echo "_nb_of_frames:		500" 	>> config_file.cfg
 			echo "_row_start:			0"	>> config_file.cfg
 			echo "_row_end:				503" 	>> config_file.cfg
-			echo "_column_start:		896" 	>> config_file.cfg
-			echo "_column_end:			1023" 	>> config_file.cfg
+			echo "_column_start:		0" 	>> config_file.cfg
+			echo "_column_end:			127"	>> config_file.cfg
 
 			echo "" >> config_file.cfg
 		
@@ -79,6 +83,10 @@ do
 			iterator=`expr $iterator + 1`
 
 			done
+			
+			iterator=0
+			i=`expr $i + 1`
+
 		done
 	done
-done
+#done

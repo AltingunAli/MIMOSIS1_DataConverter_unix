@@ -53,7 +53,8 @@ void DataConverter::init()
 	}
 	
 	_run				=	config.GetValue("_run",999999);
-		
+	_chipNo				=	config.GetValue("_chipNo",0);
+
 	_in_file_path		=	config.GetValue("_in_file_path","");
 	_in_file_name		=	config.GetValue("_in_file_name","");
 	_out_tree_file_path	= 	config.GetValue("_out_tree_file_path","");
@@ -279,7 +280,10 @@ void DataConverter::fill_tree_fired()
 	MSG(CNTR, "Input array is: " + std::to_string(input.integrated_frame.size()) + " per " + std::to_string((&input.integrated_frame[0])->size()) );
 	
 	std::ofstream myfile;
-	myfile.open ("to_mask_.txt", std::ofstream::app);
+	if(_column_end==127) { myfile.open ("../MIMOSIS1_PhysicsAnalysis_unix/masked/masked_pixels_no"+std::to_string(_chipNo)+"_A_"+std::to_string(_param_3_value)+"_"+std::to_string(_param_1_value)+".txt", std::ofstream::app); }
+	else if(_column_end==511) { myfile.open ("../MIMOSIS1_PhysicsAnalysis_unix/masked/masked_pixels_no"+std::to_string(_chipNo)+"_B_"+std::to_string(_param_3_value)+"_"+std::to_string(_param_1_value)+".txt", std::ofstream::app); }
+	else if(_column_end==895) { myfile.open ("../MIMOSIS1_PhysicsAnalysis_unix/masked/masked_pixels_no"+std::to_string(_chipNo)+"_C_"+std::to_string(_param_3_value)+"_"+std::to_string(_param_1_value)+".txt", std::ofstream::app); }
+	else { myfile.open ("../MIMOSIS1_PhysicsAnalysis_unix/masked/masked_pixels_no"+std::to_string(_chipNo)+"_D_"+std::to_string(_param_3_value)+"_"+std::to_string(_param_1_value)+".txt", std::ofstream::app); }
 
 	for(long unsigned int col_it = 0; col_it < input.integrated_frame.size() ; col_it++) 
 	{	
