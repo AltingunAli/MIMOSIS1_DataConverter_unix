@@ -210,7 +210,8 @@ std::string DataConverter::print_hex(std::string s, bool upper_case)
 void DataConverter::open_file() 
 {
 	//Open file
-	in_file.open(_in_file_path+"/"+_in_file_name, std::ios::out | std::ios::in | std::ios::binary); 	
+
+	in_file.open(_in_file_path+"/"+_in_file_name, std::ios::out | std::ios::in | std::ios::binary); 
 
 	in_file.seekg(0, std::ios::beg);
 	_input_file_size = get_file_size();
