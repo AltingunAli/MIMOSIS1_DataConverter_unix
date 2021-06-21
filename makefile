@@ -1,5 +1,5 @@
 CXX=`root-config --cxx`
-CXXFLAGS=`root-config --cflags` -std=c++14  
+CXXFLAGS=`root-config --cflags`
 LDFLAGS=`root-config --ldflags`
 
 LDLIBS = `root-config --glibs` 

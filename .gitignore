@@ -1,6 +1,3 @@
-./inputData/*
-./outputData/*
-./doc/*
-./doc
-./inputData
-./outputData
+/doc
+/inputData
+/outputData
