@@ -54,6 +54,6 @@
  * </TABLE>
  */
  
-const int VERBOSITY_LEVEL = 3;
+const int VERBOSITY_LEVEL = 2;
 
 #endif

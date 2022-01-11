@@ -211,7 +211,7 @@ void DataConverter::open_file()
 {
 	//Open file
 
-	in_file.open(_in_file_path+"/"+_in_file_name, std::ios::out | std::ios::in | std::ios::binary); 
+	in_file.open(_in_file_path+"/"+_in_file_name, std::ios::in | std::ios::binary); 
 
 	in_file.seekg(0, std::ios::beg);
 	_input_file_size = get_file_size();
@@ -294,7 +294,7 @@ void DataConverter::fill_tree_fired()
 
 			if(static_cast<int>(how_many_hits) > _nb_of_frames) 
 			{
-				MSG(WARN, "\t\t For pixel: [" << col_it << ", " << row_it << "] nb of hits largen than nb of frames: " << how_many_hits );
+				MSG(CNTR, "\t\t For pixel: [" << col_it << ", " << row_it << "] nb of hits largen than nb of frames: " << how_many_hits );
 				h2_pixels_fired_over_nbframes -> Fill(col_it, row_it, how_many_hits);	
 			}
 			
@@ -350,7 +350,7 @@ void DataConverter::save_png()
 	h2_integrated_frame_part->SetMaximum(_nb_of_frames);
 	c->Print(_out_name+"_h2_integrated_frame_part.pdf");
 	
-	c->cd();
+	/*c->cd();
 	c->SetLogy();
 	//h_fired_pixels_int_frame->GetXaxis()->SetRangeUser(400, 2*_nb_of_frames);
 	h_hitrate->Draw();
@@ -363,7 +363,7 @@ void DataConverter::save_png()
 	//h2_pixels_fired_over_nbframes->GetXaxis()->SetRangeUser(0, 128);
 	gStyle->SetPalette(kDarkRainBow);
 	h2_pixels_fired_over_nbframes->Draw("COLZ");
-	c->Print(_out_name+"_h2_pixels_fired_over_nbframes.pdf");
+	c->Print(_out_name+"_h2_pixels_fired_over_nbframes.pdf");*/
 	
 	
 
